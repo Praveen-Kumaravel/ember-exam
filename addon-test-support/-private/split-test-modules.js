@@ -1,16 +1,19 @@
-function createGroups(num) {
+function createGroups(num, initialValues) {
   const groups = new Array(num);
 
   for (let i = 0; i < num; i++) {
-    groups[i] = [];
+    groups[i] = initialValues ? [...initialValues] : [];
   }
 
   return groups;
 }
 
-function filterIntoGroups(arr, filter, numGroups) {
+function filterIntoGroups(arr, filter, numGroups, isLint) {
   const filtered = arr.filter(filter);
-  const groups = createGroups(numGroups);
+  const mandatoryModule = 'ember-test';
+  const initializers = filtered.filter(module => module.includes('initializers'));
+  const acceptanceTests = filtered.filter(module => module.includes('acceptance'));
+  const groups = isLint ? createGroups(numGroups) : createGroups(numGroups, [mandatoryModule, ...initializers, ...acceptanceTests]);
 
   for (let i = 0; i < filtered.length; i++) {
     groups[i % numGroups].push(filtered[i]);
