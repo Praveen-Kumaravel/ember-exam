@@ -10,10 +10,10 @@ function createGroups(num, initialValues) {
 
 function filterIntoGroups(arr, filter, numGroups, isLint) {
   const filtered = arr.filter(filter);
-  const mandatoryModule = 'ember-test';
-  const initializers = filtered.filter(module => module.includes('initializers'));
+/*   const mandatoryModule = 'ember-test';
+  const initializers = filtered.filter(module => module.includes('initializers')); */
   const acceptanceTests = filtered.filter(module => module.includes('acceptance'));
-  const groups = isLint ? createGroups(numGroups) : createGroups(numGroups, [mandatoryModule, ...initializers, ...acceptanceTests]);
+  const groups = isLint ? createGroups(numGroups) : createGroups(numGroups, [/* mandatoryModule, ...initializers,  */...acceptanceTests]);
 
   for (let i = 0; i < filtered.length; i++) {
     groups[i % numGroups].push(filtered[i]);
@@ -35,7 +35,7 @@ export default function splitTestModules(modules, split, partitions) {
     throw new Error('You must specify a split greater than 0');
   }
 
-  const lintTestGroups = filterIntoGroups(modules, isLintTest, split);
+  const lintTestGroups = filterIntoGroups(modules, isLintTest, split, true);
   const otherTestGroups = filterIntoGroups(modules, isNotLintTest, split);
   const tests = [];
 
