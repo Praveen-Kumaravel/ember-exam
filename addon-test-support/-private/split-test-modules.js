@@ -11,11 +11,8 @@ function createGroups(num, initialValues) {
 function filterIntoGroups(arr, filter, numGroups, isLint) {
   const filtered = arr.filter(filter);
   const acceptanceTests = filtered.filter(module => module.includes('acceptance'));
-  const adapters = filtered.filter(module => module.includes('adapters'));
-  const initializers = filtered.filter(module => module.includes('initializers'));
-  const _preIncludedTests = [...acceptanceTests, ...adapters, ...initializers, 'ember-test'];
-  const preIncludedTests = new Set(_preIncludedTests);
-  const groups = isLint ? createGroups(numGroups) : createGroups(numGroups, _preIncludedTests);
+  const preIncludedTests = new Set(acceptanceTests);
+  const groups = isLint ? createGroups(numGroups) : createGroups(numGroups, [...acceptanceTests]);
 
   for (let i = 0; i < filtered.length; i++) {
     const test = filtered[i];
