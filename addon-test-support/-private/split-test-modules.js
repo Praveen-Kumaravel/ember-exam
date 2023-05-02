@@ -26,7 +26,7 @@ function filterIntoGroups(arr, filter, numGroups, isLint) {
 }
 
 function isLintTest(name) {
-  return name.match(/\.(jshint|(es)?lint-test)$/);
+  return name.match(/\.(jshint|(es|style)?lint-test)$/);
 }
 
 function isNotLintTest(name) {
