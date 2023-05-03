@@ -1,5 +1,7 @@
 # Ember Exam
 
+## Monkey patch to fix concurrency issue in freshsales
+
 [![Build Status](https://travis-ci.org/trentmwillis/ember-exam.svg?branch=master)](https://travis-ci.org/trentmwillis/ember-exam)
 [![NPM Version](https://badge.fury.io/js/ember-exam.svg)](https://badge.fury.io/js/ember-exam)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-exam.svg)](https://emberobserver.com/addons/ember-exam)
